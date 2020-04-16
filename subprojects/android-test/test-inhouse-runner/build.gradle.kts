@@ -7,13 +7,13 @@ plugins {
 }
 
 dependencies {
+    api(project(":subprojects:android-test:junit-utils"))
+    api(project(":subprojects:android-test:test-report"))
     implementation(project(":subprojects:common:sentry"))
     implementation(project(":subprojects:common:okhttp"))
     implementation(project(":subprojects:common:statsd"))
     implementation(project(":subprojects:common:report-viewer"))
     implementation(project(":subprojects:common:logger"))
-    implementation(project(":subprojects:android-test:junit-utils"))
-    api(project(":subprojects:android-test:test-report"))
     implementation(project(":subprojects:android-test:test-annotations"))
     implementation(project(":subprojects:android-test:ui-testing-core"))
     implementation(project(":subprojects:android-test:ui-testing-maps"))

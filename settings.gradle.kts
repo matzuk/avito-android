@@ -138,6 +138,7 @@ pluginManagement {
                 includeGroup("com.slack.keeper")
                 includeGroup("digital.wup.android-maven-publish")
                 includeGroup("nebula.integtest")
+                includeGroup("com.autonomousapps.dependency-analysis")
             }
         }
         exclusiveContent {
@@ -181,6 +182,8 @@ pluginManagement {
 
                 pluginId == "com.slack.keeper" ->
                     useModule("com.slack.keeper:keeper:0.2.0")
+                pluginId == "com.autonomousapps.dependency-analysis" ->
+                    useVersion("0.38.0")
             }
         }
     }
