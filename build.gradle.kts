@@ -159,7 +159,7 @@ subprojects {
 
     plugins.withId("digital.wup.android-maven-publish") {
         //todo remove afterEvaluate if possible
-        afterEvaluate {
+        beforeEvaluate {
 
             val publicationName = "mavenAar"
 
