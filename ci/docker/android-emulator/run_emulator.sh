@@ -4,6 +4,16 @@
 
 set -ex
 
+forward_loggers() {
+  mkdir /tmp/android-unknown
+  mkfifo /tmp/android-unknown/kernel.log
+  mkfifo /tmp/android-unknown/logcat.log
+  echo "emulator: It is safe to ignore the warnings from tail. The files will come into existence soon."
+  tail --retry -f /tmp/android-unknown/goldfish_rtc_0 | sed -u 's/^/video: /g' &
+  cat /tmp/android-unknown/kernel.log | sed -u 's/^/kernel: /g' &
+  cat /tmp/android-unknown/logcat.log | sed -u 's/^/logcat: /g' &
+}
+
 if [[ -z "${VERSION}" ]]; then
     echo_error "You must specify VERSION environment variable"
     exit 1
@@ -43,7 +53,10 @@ else
     emulator_arguments+=( -snapshot ci -no-snapshot-save )
 fi
 
+forward_loggers
+
 emulator_arguments+=( -no-boot-anim -no-audio -partition-size 2048 )
+emulator_arguments+=( -logcat-output /tmp/android-unknown/logcat.log )
 
 cd /opt/android-sdk/emulator
 echo "Run ${binary_name} binary for emulator ${emulator_name} with abi: x86 (Version: ${VERSION})"

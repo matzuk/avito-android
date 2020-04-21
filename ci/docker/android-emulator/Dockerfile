@@ -76,6 +76,8 @@ COPY hardware/config_${SDK_VERSION}.ini /root/.android/avd/emulator_${SDK_VERSIO
 # ----------------- Entrypoint ------------------
 COPY prepare_snapshot.sh /
 
+COPY run_tests.sh /
+COPY run_desktop.sh /
 COPY adb_redirect.sh /
 COPY run_emulator.sh /
 COPY entrypoint.sh /
