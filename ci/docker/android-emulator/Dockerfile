@@ -1,5 +1,7 @@
 FROM nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
 
+WORKDIR /work
+
 ARG SDK_VERSION
 
 ENV VERSION=${SDK_VERSION}
